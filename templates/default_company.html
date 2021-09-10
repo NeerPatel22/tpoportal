@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+<!-- Header Start -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-inverse sticky-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">
+				<img src="{% static 'images/A.png' %}" onclick="" width="100%" height="20%"  alt="LOGO">
+			</a>
+			<!-- <pre>Beneficial to Health</pre> -->
+			&nbsp;&nbsp;
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link btn-outline-info" href="{% url 'home' %}"><i class="fa fa-home">&nbsp;</i>Home</a>
+				</li>
+				&nbsp;&nbsp;
+				<!-- Dropdown -->
+				<li class="nav-item dropdown ">
+					<div class="dropdown">
+						<a class="nav-link btn-outline-info" href="#" id="navbardrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-align-justify">&nbsp;</i> Menu
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="{% url 'company_details' %}">Company Details</a>
+							<a class="dropdown-item" href="{% url 'applicant' %}">View Applicants</a>
+							<a class="dropdown-item" href="{% url 'job_details' %}">Job Details</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<ul class="navbar-nav mr-auto">
+			&nbsp;&nbsp;
+			<li class="nav-item dropdown">
+				<div class="dropdown">
+					<a class="nav-link btn-outline-info" href="#" id="navbardrop" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-user">&nbsp;</i>{{ username }}
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{% url 'account' %}">My Account</a>
+						<a class="dropdown-item" href="{% url 'change_password' %}">Change Password</a>
+						<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</nav>
+<!-- Header End -->
+</body>
+</html>

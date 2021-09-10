@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Applicant</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+	{% if role == 'student' %}
+        {% include 'default_student.html' %}
+    {% else %}
+        {% include 'default_company.html' %}
+    {% endif %}
+	<br><br>
+    <div>
+        <ul class="message">
+        {% for message in messages %}
+           <script>alert('{{ message }}')</script>
+        {% endfor %}
+        </ul>
+    </div>
+    <br>
+	<div class="card mx-auto" style="width: 80%">
+		<div class="card-body bg-light">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email Id</th>
+						<th>Semester</th>
+						<th>Branch</th>
+						<th>Overall Grade</th>
+						<th>Designation</th>
+						<th>Resume</th>
+					</tr>
+				</thead>
+				<tbody>
+                {% for job in jobs %}
+					<tr>
+						<td>{{ job.FirstName }}</td>
+						<td>{{ job.LastName }}</td>
+						<td>{{ job.EMAILID }}</td>
+						<td>{{ job.SEMESTER }}</td>
+						<td>{{ job.BRANCH }}</td>
+						<td>{{ job.GRADE }}</td>
+						<td>{{ job.DESIGNATION }}</td>
+						<td><a href="{{ job.RESUME.url }}"download>{{ job.RESUME }}</a></td>
+					</tr>
+                {% endfor %}
+				</tbody>
+			</table>
+			<div style="text-align: center;">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    {% if jobs.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ jobs.previous_page_number }}">Previous</a></li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link" href="?page={{ jobs.number }}">{{ jobs.number }}</a></li>
+                    {% if jobs.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ jobs.next_page_number }}">Next</a></li>
+                    {% endif %}
+                  </ul>
+                </nav>
+            </div>
+		</div>
+	</div>
+	<br><br><br>
+	{% include 'footer.html' %}
+</body>
+</html>

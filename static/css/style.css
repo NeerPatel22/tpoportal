@@ -1,0 +1,71 @@
+.navbar-nav {
+	box-sizing: border-box;
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+.a{
+	border-radius: 8px;
+}
+
+.nav-link {
+	border-radius: 4px;	
+}
+
+.nav-item {
+	border-radius: 4px;	
+	box-sizing: border-box;
+}
+
+.btn-outline-info {
+  color: #0f7dc1;
+  background-color: transparent;
+  background-image: none;
+  border-color: #0f7dc1;
+}
+
+.btn-outline-info:hover {
+  color: #fff;
+  background-color: #0f7dc1;
+  border-color: #0f7dc1;
+}
+
+.btn-outline-info:not(:disabled):not(.disabled):active, .btn-outline-info:not(:disabled):not(.disabled).active,
+.show > .btn-outline-info.dropdown-toggle {
+  color: #fff;
+  background-color: #0f7dc1;
+  border-color: #0f7dc1;
+}
+
+.btn-outline-info:not(:disabled):not(.disabled):active:focus, .btn-outline-info:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-info.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(15, 125, 193, 0.5);
+}
+
+.inputIcon input[type=button] {
+  padding-left: 40px;
+}
+
+.inputIcon {
+  position: relative;
+}
+
+.inputIcon i {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+
+#home-baner-1 {
+    overflow: hidden;
+    margin-bottom: 60px;
+    margin-top: 0px;
+    background: url(./images/indexred.jpg);
+}

@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %} {% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<style type="text/css">
+		th{
+			text-transform: uppercase;
+			font-family: sans-serif;
+
+		}
+		td{
+
+			font-family: fantasy;
+			color: black;
+			width: 30%
+		}
+		hr{ /*
+		    width: 50%
+		    height: 5%;
+		    color: #123455;*/
+		   border: 1px solid gray;
+   	 	}
+        {% block css %} {% endblock %}
+	</style>
+</head>
+<body>
+	<!-- Header Start -->
+	<nav class="navbar navbar-expand-sm bg-light navbar-inverse sticky-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">
+				<img src="{% static 'images/A.png' %}"  width="100%" height="20%" alt="LOGO">
+			</a>
+			&nbsp;&nbsp;
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link btn-outline-info" href="{% url 'index' %}"><i class="fa fa-home">&nbsp;</i>Home</a>
+				</li>
+				&nbsp;&nbsp;
+			</ul>	
+		</div>
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link btn-outline-info" href="{% url 'login' %}"><i class="fa fa-lock">&nbsp;</i>Login</a>
+			</li>
+			&nbsp;&nbsp;
+			<li class="nav-item">
+				<a class="nav-link btn-outline-info" href="{% url 'register' %}"><i class="fa fa-user-plus">&nbsp;</i>SignUp</a>
+			</li>
+		</ul>	
+	</nav>
+	<!-- Header End -->
+    {% block body %} {% endblock %}
+    <!-- Footer Start -->
+	<nav class="navbar navbar-expand-sm bg-dark navbar-inverse sticky-top">
+		<table style="width: 100%">
+			<tr>
+				<th style="padding-left: 9%;color:white;">ABOUT US</th>
+				<th style="padding-left: 9%;color:white;">CONTACT US</th>
+				<th style="padding-left: 9%;color:white;">LOCATION</th>
+			</tr>
+			<tr>
+				<td><br></td>
+				<td><br></td>
+				<td><br></td>
+			</tr>
+			<tr>
+				<td style="padding-left: 7%"><span style="font-size: 130%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Develop By:<br>Neer Patel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(171040107035)<br>Hiren Thakkar&nbsp;&nbsp;(171040107061)<br>Jay Patel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(171040107031)<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mantain By:<br>&nbsp;&nbsp;&nbsp;Computer Department</span></td>
+				<td style="padding-right: 8%">
+					<ul class="nav flex-column">
+				        <li><i class="fa fa-map-marker"></i>  Near Mevad Toll-booth,Ahmedabad-Mehsana <br>&nbsp;&nbsp;Express
+				        	Highway,Ta.& Dist.Mehsana-384460,<br>&nbsp;&nbsp;Gujarat,india.
+				        </li>
+				       	<li class="nav-item"><hr></li>
+				        <li class="nav-item"><i class="fa fa-phone"></i> +91 7096207373</li>
+				        <li class="nav-item"><hr></li>
+				        <li class="nav-item"><i class="fa fa-phone"></i> +91 9824783470</li>
+				        <li class="nav-item"><hr></li>
+				        <li class="nav-item"><i class="fa fa-envelope-o"></i> punit.saswadkar@gperi.ac.in</li>
+				    </ul>
+				</td>
+				<td rowspan="2" style="padding-left: 4%">
+					<a href="https://www.google.com/maps/place/Gujarat+Power+Engineering+%26+Research+Institute/@23.5268085,72.3828707,16z/data=!4m5!3m4!1s0x395c40f31ef4eed1:0xc18c187b3575b64e!8m2!3d23.5268085!4d72.3872481"><img src="{% static 'images/lo.png' %}" alt="LOCATION"></a>
+				</td>
+			</tr>
+		</table>
+	</nav>
+    <!-- Footer End -->
+</body>
+</html>

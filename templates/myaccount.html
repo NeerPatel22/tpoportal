@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Account</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+	{% if role == 'student' %}
+        {% include 'default_student.html' %}
+    {% else %}
+        {% include 'default_company.html' %}
+    {% endif %}
+	<br><br>
+	<div class="row">
+		<div class="col">
+			<div class="card mx-auto"style="width: 90%">
+				<div class="card-body bg-light">
+                    {% for d in details %}
+					<table>
+						<tr>
+							<td><label>Enrollment:</label></td>
+							<td><label>{{ d.Enrollment }}</label></td>
+						</tr>
+						<tr>
+							<td><label>First Name:</label></td>
+							<td><label>{{ d.FirstName }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Middle Name</label></td>
+							<td><label>{{ d.MiddleName }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Last Name</label></td>
+							<td><label>{{ d.LastName }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Mobile No:</label></td>
+							<td><label>{{ d.MobileNo }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Email Id:</label></td>
+							<td><label>{{ d.email }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Semester:</label></td>
+							<td><label>{{ d.Semester }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Branch:</label></td>
+							<td><label>{{ d.Branch }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Admission Year:</label></td>
+							<td><label>{{ d.AdmissionYear }}</label></td>
+						</tr>
+						<tr>
+							<td><label>PassOut Year:</label></td>
+							<td><label>{{ d.PassOutYear }}</label></td>
+						</tr>
+						<tr>
+							<td><label>DOB:</label></td>
+							<td><label>{{ d.DOB }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Blood Group:</label></td>
+							<td><label>{{ d.BloodGroup }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Gender:</label></td>
+							<td><label>{{ d.Gender }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Overall Grade:</label></td>
+							<td><label>{{ d.OverallGrade }}</label></td>
+						</tr>
+					</table><br>
+                    <div style="text-align: center;">
+					<a href="update?enroll={{ d.Enrollment }}"><button class="btn btn-primary">Update Your Details</button></a></div>
+				</div>
+                {% endfor %}
+			</div>
+		</div>
+		<div class="col">
+			<div class="card mx-auto" style="width: 90%">
+				<div class="card-header">
+					<div style="text-align: center;">
+						<span><b>Job Application Details</b></span>
+					</div>
+				</div>
+				<div class="card-body bg-light">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Job Id</th>
+								<th>Company Name</th>
+								<th>Designation</th>
+							</tr>
+						</thead>
+						<tbody>
+                        {% for job in jobdetails %}
+							<tr>
+								<td>{{ job.JOBID }}</td>
+								<td>{{ job.COMPANYNAME }}</td>
+								<td>{{ job.DESIGNATION }}</td>
+							</tr>
+                        {% endfor %}
+						</tbody>
+					</table>
+				</div>
+                <div style="text-align: center;">
+                    <nav aria-label="Page navigation example">
+{#                        <ul class="pagination">#}
+{#                            {% if jobs.has_previous %}#}
+{#                                <li class="page-item"><a class="page-link" href="?page={{ jobs.previous_page_number }}">Previous</a></li>#}
+{#                            {% endif %}#}
+{#                                <li class="page-item"><a class="page-link" href="?page={{ jobs.number }}">{{ jobs.number }}</a></li>#}
+{#                            {% if jobs.has_next %}#}
+{#                                <li class="page-item"><a class="page-link" href="?page={{ jobs.next_page_number }}">Next</a></li>#}
+{#                            {% endif %}#}
+{#                        </ul>#}
+                    </nav>
+				</div>
+			</div>
+		</div>
+        </div>
+	<br><br><br>
+	{% include 'footer.html' %}
+</body>
+</html>

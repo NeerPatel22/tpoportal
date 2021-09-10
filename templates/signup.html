@@ -1,0 +1,80 @@
+{% extends 'default.html' %}
+{% block title %} SignUp {% endblock %}
+{% block body %}
+    {% load static %}
+    <br><br><br>
+    <div>
+        <ul class="message">
+        {% for message in messages %}
+           <script>alert('{{ message }}')</script>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="card mx-auto" style="width: 30%">
+		<div class="card-body bg-light">
+			<img class="card-img" style="height:15%; width: 100%;" src="{% static 'images/signup.png' %}" alt="register">
+				<form action="register" method="POST" name="frm">
+                    {% csrf_token %}
+
+					<label>Register As:</label>
+                    <label>
+                        <select name="role" class="form-control">
+                            <option value="student">Student</option>
+                            <option value="company">Company</option>
+                        </select>
+                    </label>
+                    <br>
+					<label>Name:</label>
+					<input type="text" class="form-control" name="name" placeholder="Name" required /><br/>
+
+					<label>Username:</label>
+					<input type="text" class="form-control" name="username" placeholder="Username"  required /><br/>
+
+				    <label>Password:</label>
+				    <input type="password" class="form-control" name="psw"  id="myInput" placeholder="Password" required />
+					&nbsp;
+					<input type="checkbox" onclick="mFunction()"> Show
+					<script>
+						function mFunction() {
+  							var x = document.getElementById("myInput");
+  							if (x.type =="password") {
+  						 		x.type = "text";
+  							} else {
+  						 		x.type = "password";
+ 							}
+						}
+					</script>
+
+					<br>
+					<br>
+					<label>Confirm password:</label>
+					<input type="password" class="form-control" name="cpsw" id="Input" placeholder="Confirm Password" required />
+					&nbsp;
+					<input type="checkbox" onclick="myFunction()"> Show
+					<script>
+						function myFunction()
+						{
+							var x = document.getElementById("Input");
+							if (x.type =="password")
+							{
+								x.type = "text";
+							}
+							else
+							{
+								x.type = "password";
+							}
+						}
+					</script>
+
+					<br><br>
+
+					<label>Emailid:</label>
+					<input type="text" class="form-control" name="email" placeholder="Email Address" required /><br/>
+
+					<button class="btn btn-primary" value="submit" name="submit">
+					<i class="fa fa-user-plus"></i>&nbsp;SignUp</button>
+				</form>
+		</div>
+	</div>
+    <br><br><br>
+{% endblock %}

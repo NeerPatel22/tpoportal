@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+	{% if role == 'student' %}
+        {% include 'default_student.html' %}
+    {% else %}
+        {% include 'default_company.html' %}
+    {% endif %}
+	<br><br>
+    {% for s in sd %}
+	    <div class="card mx-auto" style="width: 50%">
+			<div class="card-body bg-light">
+				<form enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
+
+					<label>Enrollment:</label>
+		    		<input class="form-control" type="text" name="er" value="{{ s.Enrollment }}">
+					<br>
+
+					<label>First Name:</label>
+					<input class="form-control" type="text" name="fname" value="{{ s.FirstName }}">
+					<br>
+
+					<label>Middle Name:</label>
+					<input class="form-control" type="text" name="mname" value="{{ s.MiddleName }}">
+					<br>
+
+					<label>Last Name(surname):</label>
+					<input class="form-control" type="text" name="lname" value="{{ s.LastName }}">
+					<br>
+
+					<label>Mobile No.:</label>
+					<input class="form-control" type="text" name="mnum" value="{{ s.MobileNo }}">
+					<br>
+
+					<label>Email Id:</label>
+					<input class="form-control" type="text" name="eid" value="{{ s.email }}">
+					<br>
+					<label>DOB:</label>
+					<input class="form-control" type="date" name="dob" value="{{ s.DOB|date:"Y-m-d" }}">
+					<br>
+					<label>Overall Grade(out of 10)</label>
+					<input class="form-control" type="text" name="grade" value="{{ s.OverallGrade }}">
+					<br>
+					<button class="btn btn-primary form-control" value="submit" name="submit"><i class="fa fa-plus-square-o"></i>&nbsp;Upadate Details</button>
+				</form>
+			</div>
+		</div>
+    {% endfor %}
+    <br><br><br>
+	{% include 'footer.html' %}
+</body>
+</html>

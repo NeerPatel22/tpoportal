@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Account</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+	{% if role == 'student' %}
+        {% include 'default_student.html' %}
+    {% else %}
+        {% include 'default_company.html' %}
+    {% endif %}
+	<br><br>
+	<div class="row">
+        <div class="col">
+			<div class="card mx-auto">
+				<div class="card-body bg-light">
+                    {% for i in comdetails %}
+					<table>
+						<tr>
+							<td><label>Company Name:</label></td>
+							<td><label>{{ i.COMPANYNAME }}</label></td>
+						</tr>
+						<tr>
+							<td><label>HR Name:</label></td>
+							<td><label>{{ i.HRNAME }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Email Id:</label></td>
+							<td><label>{{ i.EMAILID }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Address:</label></td>
+							<td><label>{{ i.ADDRESS }}</label></td>
+						</tr>
+						<tr>
+							<td><label>Website:</label></td>
+							<td><label>{{ i.WEBLINK }}</label></td>
+						</tr>
+					</table>
+					<div style="text-align: center;">
+                        <a href="company_update?cname={{ i.COMPANYNAME }}">
+                            <button class="btn btn-primary">Update Your Details</button>
+                        </a>
+                    </div>
+                    {% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="card mx-auto">
+			<div class="card-body bg-light">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Job Id</th>
+							<th>Designation</th>
+							<th>Eligibility Criteria</th>
+							<th>Description</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+                    {% for j in jdetails %}
+						<tr>
+							<td>{{ j.id }}</td>
+							<td>{{ j.DESIGNATION }}</td>
+							<td>{{ j.ELIGIBILITYCRITERIA }}</td>
+							<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ j.id }}">
+							  Description
+							</button>
+						</td>
+							<td>
+                                <a href="canceljob?jid={{ j.id }}">
+                                    <button class="btn btn-primary">Cancel Job</button>
+                                </a>
+                            </td>
+						</tr>
+                        <!-- Modal -->
+						<div class="modal fade" id="{{ j.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Job Description</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        {{ j.JOBDESCRIPTION }}
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+                    {% endfor %}
+					</tbody>
+				</table>
+				<div style="text-align: center;">
+                     <nav aria-label="Page navigation example">
+                          <ul class="pagination">
+                            {% if jobs.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ jobs.previous_page_number }}">Previous</a></li>
+                            {% endif %}
+                                <li class="page-item"><a class="page-link" href="?page={{ jobs.number }}">{{ jobs.number }}</a></li>
+                            {% if jobs.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ jobs.next_page_number }}">Next</a></li>
+                            {% endif %}
+                          </ul>
+                    </nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br><br>
+	{% include 'footer.html' %}
+</body>
+</html>
